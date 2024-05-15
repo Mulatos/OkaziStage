@@ -5,6 +5,10 @@ import { Link } from "react-router-dom";
 import DropDownCategory from "../components/DropDownCategory";
 
 export default function MeasurementPage() {
+  const handleCategoryChange = (id: number) => {
+    console.log("category selected:", id);
+    // setSelectedcategory(id);
+  };
   return (
     <div id="countainer">
       <Navbar
@@ -27,7 +31,7 @@ export default function MeasurementPage() {
             Terug
           </Button>
         </Link>
-        <DropDownCategory></DropDownCategory>
+        <DropDownCategory onSelect={handleCategoryChange}></DropDownCategory>
       </div>
     </div>
   );

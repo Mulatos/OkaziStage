@@ -8,7 +8,12 @@ import axios from "axios";
 interface SubCategories {
   subCategoryId: number;
   name: string;
+  categoryId: number;
 }
+
+// interface Category {
+//   name: string;
+// }
 
 function SubCategoryPage() {
   const [subCategories, setSubCategories] = useState<SubCategories[]>([]);
@@ -32,9 +37,10 @@ function SubCategoryPage() {
     }
   };
 
-  // const handleCategoryChange = (id: number) => {
-  //   setSelectedcategory(id);
-  // };
+  const handleCategoryChange = (id: number) => {
+    console.log("category selected:", id);
+    setSelectedcategory(id);
+  };
 
   const handleSubCategorySubmit = async (
     event: React.FormEvent<HTMLFormElement>
@@ -49,14 +55,17 @@ function SubCategoryPage() {
 
     console.log("Subcategory name:", subCategoryName);
     console.log("slected category:", selectedCategory);
-    console.log("setSelectedCategory ID", setSelectedcategory);
+    if (selectedCategory === null) {
+      console.error("No category selected");
+      return;
+    }
 
     try {
       const response = await axios.post(
         "http://localhost:8080/v1/subcategories/create",
         {
           name: subCategoryName,
-          id: selectedCategory,
+          categoryId: selectedCategory,
         }
       );
 
@@ -88,6 +97,7 @@ function SubCategoryPage() {
                 <tr>
                   <th>#</th>
                   <th>Subcategorie naam</th>
+
                   <th>Action buttons</th>
                 </tr>
               </thead>
@@ -128,10 +138,15 @@ function SubCategoryPage() {
               </Form.Group>
               <Form.Group controlId="categorySelect">
                 <Form.Label>Select Category:</Form.Label>
-                <DropDownCategory></DropDownCategory>
+                <DropDownCategory
+                  onSelect={handleCategoryChange}
+                ></DropDownCategory>
               </Form.Group>
               <Button variant="primary" type="submit">
                 Create Subcategory
+              </Button>
+              <Button variant="primary" onClick={() => setCurrentView("List")}>
+                Lijst zien ^^
               </Button>
             </Form>
             <Link to={"/"}>

@@ -172,6 +172,9 @@ function LocationPage() {
             <Button onClick={() => navigate(-1)} variant="primary">
               Terug
             </Button>
+            <Button onClick={() => setCurrentView("List")}>
+              zie Lijst ^^{" "}
+            </Button>
           </div>
         );
     }

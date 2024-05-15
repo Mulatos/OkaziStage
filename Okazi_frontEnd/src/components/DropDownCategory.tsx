@@ -3,14 +3,14 @@ import { Form } from "react-bootstrap";
 import axios from "axios";
 
 interface Category {
-  id: number;
+  categoryId: number;
   name: string;
 }
-// interface DropDownCategoryProps {
-//   onSelect: (categoryId: number) => void;
-// }
+interface DropDownCategoryProps {
+  onSelect: (categoryId: number) => void;
+}
 
-const DropDownCategory: React.FC = () => {
+const DropDownCategory: React.FC<DropDownCategoryProps> = ({ onSelect }) => {
   const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
@@ -29,11 +29,17 @@ const DropDownCategory: React.FC = () => {
     }
   };
 
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedCategoryId = parseInt(event.target.value);
+    console.log("selected category ID", selectedCategoryId);
+    onSelect(selectedCategoryId);
+  };
+
   return (
-    <Form.Select aria-label="Default select example">
-      <option>kies een Categorie</option>
-      {categories.map((category, index) => (
-        <option key={index} value={category.id}>
+    <Form.Select aria-label="Default select example" onChange={handleChange}>
+      <option value="">kies een Categorie</option>
+      {categories.map((category) => (
+        <option key={category.categoryId} value={category.categoryId}>
           {category.name}
         </option>
       ))}
