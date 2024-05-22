@@ -58,7 +58,6 @@ function HomePage() {
     <div id="Background">
       <Navbar
         home="Home"
-        navItem1="Meetings"
         navItem2="Categories"
         navItem3="SubCategories"
         navItem4="Locaties"
@@ -66,6 +65,7 @@ function HomePage() {
         rightCorner="Profiel"
       ></Navbar>
       <h1>Home</h1>
+      <h2>Verander dit naar measurement page :D</h2>
       <div>{renderButtons()}</div>
     </div>
   );

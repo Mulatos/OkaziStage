@@ -45,7 +45,6 @@ function UserControllerPage() {
     <div>
       <Navbar
         home="Home"
-        navItem1="Meetings"
         navItem2="Categories"
         navItem3="SubCategories"
         navItem4="Locaties"

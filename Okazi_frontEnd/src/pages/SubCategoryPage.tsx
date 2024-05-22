@@ -84,6 +84,7 @@ function SubCategoryPage() {
       console.log("SubCategory deleted succesfully");
     } catch (error) {
       console.log("Error deleting SubCategory", error);
+      console.log(subCategoryId);
     }
   };
 
@@ -92,6 +93,7 @@ function SubCategoryPage() {
       case "List":
         return (
           <div>
+            <h2>fix the delete (bad request)</h2>
             <Table bordered hover>
               <thead>
                 <tr>
@@ -109,9 +111,10 @@ function SubCategoryPage() {
                     <td>
                       <Button
                         variant="danger"
-                        onClick={() =>
-                          handleDeleteSubCategories(subCategory.subCategoryId)
-                        }
+                        onClick={() => {
+                          handleDeleteSubCategories(subCategory.subCategoryId);
+                          setCurrentView("List");
+                        }}
                       >
                         verwijder
                       </Button>
@@ -161,7 +164,6 @@ function SubCategoryPage() {
     <div>
       <Navbar
         home="Home"
-        navItem1="Meetings"
         navItem2="Categories"
         navItem3="SubCategories"
         navItem4="Locaties"

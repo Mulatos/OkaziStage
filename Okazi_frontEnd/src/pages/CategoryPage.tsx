@@ -77,6 +77,7 @@ function CategoryPage() {
             <Link to={"/"}>
               <Button variant="primary">Terug</Button>
             </Link>
+            <Button onClick={() => setCurrentView("List")}>Zie lijst ^^</Button>
           </Form>
         );
     }
@@ -125,7 +126,6 @@ function CategoryPage() {
     <div>
       <Navbar
         home="Home"
-        navItem1="Meetings"
         navItem2="Categories"
         navItem3="SubCategories"
         navItem4="Locaties"
