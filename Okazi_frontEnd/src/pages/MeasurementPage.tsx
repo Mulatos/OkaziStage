@@ -6,6 +6,8 @@ import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+import "../style/Style.css";
+
 // interface Measurements {
 //   subCategoryId: number;
 // }
@@ -316,7 +318,7 @@ export default function MeasurementPage() {
     }
   };
   return (
-    <div id="countainer">
+    <div>
       <Navbar
         home="Home"
         navItem2="Categories"
@@ -325,9 +327,11 @@ export default function MeasurementPage() {
         navItem5="Overzicht"
         rightCorner="Profiel"
       ></Navbar>
-      <h1>Meusurements</h1>
-      {renderPageViewMeasurements()}
-      <h2>vind een manier dat je gewoon de keuze kunt meegeven </h2>
+      <div id="container">
+        <h1>Meusurements </h1>
+        {renderPageViewMeasurements()}
+        <h2>vind een manier dat je gewoon de keuze kunt meegeven </h2>
+      </div>
     </div>
   );
 }

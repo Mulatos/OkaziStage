@@ -9,7 +9,7 @@ interface Category {
 interface DropDownCategoryProps {
   onSelect: (categoryId: number) => void;
 }
-
+// props https://react.dev/learn/passing-props-to-a-component
 const DropDownCategory: React.FC<DropDownCategoryProps> = ({ onSelect }) => {
   const [categories, setCategories] = useState<Category[]>([]);
 

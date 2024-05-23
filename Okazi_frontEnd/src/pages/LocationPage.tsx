@@ -191,8 +191,10 @@ function LocationPage() {
         navItem5="Overzicht"
         rightCorner="Profiel"
       ></Navbar>
-      <h1>Location</h1>
-      {renderPageViewLocation()}
+      <div id="container">
+        <h1>Location</h1>
+        {renderPageViewLocation()}
+      </div>
     </div>
   );
 }

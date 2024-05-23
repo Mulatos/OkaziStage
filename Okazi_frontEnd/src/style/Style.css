@@ -1,0 +1,14 @@
+#container {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.table-custom {
+  width: 25%; /* Adjust this percentage as needed */
+  margin: 5 auto;
+}
+
+.table-custom th, .table-custom td {
+  padding: 0.25rem; /* Reduce padding */
+  text-align: left; /* Center-align text */
+}

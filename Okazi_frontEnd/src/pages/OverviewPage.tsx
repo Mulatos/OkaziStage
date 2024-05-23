@@ -5,6 +5,8 @@ import Navbar from "../components/Navbar";
 import axios from "axios";
 import { Form, Table } from "react-bootstrap";
 
+import "../style/Style.css";
+
 interface WeightData {
   category: string | null;
   transactionType: boolean | null;
@@ -76,59 +78,92 @@ function OverviewPage() {
         rightCorner="Profiel"
       ></Navbar>
       <h1>Overzicht</h1>
-
-      <Form>
-        <Form.Group controlId="datePicker">
-          <Form.Label>Select Date</Form.Label>
-          <DatePicker
-            selected={selectedDate}
-            onChange={handleDateChange}
-            dateFormat="dd/MM/yyyy"
-            isClearable
-            className="form-control"
-            placeholderText="selecteer een datum"
-            calendarStartDay={1}
-          />
-        </Form.Group>
-      </Form>
-      {loading && <div>Loading...</div>}
-      {error && <div>Error: {error}</div>}
-      {!loading && !error && (
-        <Table bordered hover>
+      <div id="container">
+        <Form>
+          <Form.Group controlId="datePicker">
+            <Form.Label>Select Date</Form.Label>
+            <DatePicker
+              selected={selectedDate}
+              onChange={handleDateChange}
+              dateFormat="dd/MM/yyyy"
+              isClearable
+              className="form-control"
+              placeholderText="selecteer een datum"
+              calendarStartDay={1}
+            />
+          </Form.Group>
+        </Form>
+        {loading && <div>Loading...</div>}
+        {error && <div>Error: {error}</div>}
+        {!loading && !error && (
+          <Table bordered hover>
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Transaction Type</th>
+                <th>Instroom</th>
+                <th>Total Weight</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {(selectedDate ? filteredData : data).map((row, index) => (
+                <tr key={index}>
+                  <td>{row.category || "N/A"}</td>
+                  <td>
+                    {row.transactionType !== null
+                      ? row.transactionType
+                        ? "In"
+                        : "Out"
+                      : "N/A"}
+                  </td>
+                  <td>
+                    {row.instroom !== null
+                      ? row.instroom
+                        ? "Yes"
+                        : "No"
+                      : "N/A"}
+                  </td>
+                  <td>{row.totalWeight}</td>
+                  <td>{formatDate(row.date, userLocale)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        )}
+        <br />
+        <Table bordered size="sm" className="table-custom">
           <thead>
             <tr>
-              <th>Category</th>
-              <th>Transaction Type</th>
-              <th>Instroom</th>
-              <th>Total Weight</th>
-              <th>Date</th>
+              <th>transactionType</th>
+              <th>instroom</th>
+              <th>Betekenis</th>
             </tr>
           </thead>
           <tbody>
-            {(selectedDate ? filteredData : data).map((row, index) => (
-              <tr key={index}>
-                <td>{row.category || "N/A"}</td>
-                <td>
-                  {row.transactionType !== null
-                    ? row.transactionType
-                      ? "In"
-                      : "Out"
-                    : "N/A"}
-                </td>
-                <td>
-                  {row.instroom !== null
-                    ? row.instroom
-                      ? "Yes"
-                      : "No"
-                    : "N/A"}
-                </td>
-                <td>{row.totalWeight}</td>
-                <td>{formatDate(row.date, userLocale)}</td>
-              </tr>
-            ))}
+            <tr>
+              <td>in</td>
+              <td>yes</td>
+              <td>Vrachtwagen</td>
+            </tr>
+            <tr>
+              <td>in</td>
+              <td>no</td>
+              <td>Poort</td>
+            </tr>
+            <tr>
+              <td>out</td>
+              <td>yes</td>
+              <td>Winkel</td>
+            </tr>
+            <tr>
+              <td>out</td>
+              <td>no</td>
+              <td>Afval</td>
+            </tr>
           </tbody>
         </Table>
-      )}
+      </div>
     </div>
   );
 }

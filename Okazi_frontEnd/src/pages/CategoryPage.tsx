@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+import "../style/Style.css";
+
 interface Categories {
   categoryId: number;
   name: string;
@@ -106,6 +108,7 @@ function CategoryPage() {
       setCategoryName("");
 
       console.log("New Category created!");
+      fetchData();
     } catch (error) {
       console.error("error creating category:", error);
     }
@@ -133,7 +136,10 @@ function CategoryPage() {
         rightCorner="Profiel"
       ></Navbar>
       <h1>Category</h1>
-      {renderPageView()}
+      <div id="container">
+        <p>Modal voor het aanmaken van een nieuwe categorie</p>
+        {renderPageView()}
+      </div>
     </div>
   );
 }

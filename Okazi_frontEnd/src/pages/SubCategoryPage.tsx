@@ -42,6 +42,7 @@ function SubCategoryPage() {
     setSelectedcategory(id);
   };
 
+  // event.target.value
   const handleSubCategorySubmit = async (
     event: React.FormEvent<HTMLFormElement>
   ) => {
@@ -70,6 +71,7 @@ function SubCategoryPage() {
       );
 
       console.log("subcategory created succesfully", response.data);
+      fetchData();
     } catch (error) {
       console.error("error creating subcategory", error);
     }
@@ -82,6 +84,7 @@ function SubCategoryPage() {
         `http://localhost:8080/v1/subcategories/${subCategoryId}`
       );
       console.log("SubCategory deleted succesfully");
+      fetchData();
     } catch (error) {
       console.log("Error deleting SubCategory", error);
       console.log(subCategoryId);
@@ -171,7 +174,10 @@ function SubCategoryPage() {
         rightCorner="Profiel"
       ></Navbar>
       <h1>SubCategory</h1>
-      {renderSubCategoryPage()}
+      <div id="container">
+        <p>check https://react.dev/learn/passing-props-to-a-component aub </p>
+        {renderSubCategoryPage()}
+      </div>
     </div>
   );
 }
