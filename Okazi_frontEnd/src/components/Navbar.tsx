@@ -1,4 +1,5 @@
 import { Container, Nav, Navbar as BootstrapNavbar } from "react-bootstrap";
+import "../style/Style.css";
 
 interface NavBarProps {
   home: string;
@@ -19,7 +20,11 @@ function Navbar({
   rightCorner,
 }: NavBarProps) {
   return (
-    <BootstrapNavbar collapseOnSelect expand="lg" className="bg-body-tertiary">
+    <BootstrapNavbar
+      collapseOnSelect
+      expand="lg"
+      className="bg-body-tertiary nnavbar"
+    >
       <Container>
         <BootstrapNavbar.Brand href="/">{home}</BootstrapNavbar.Brand>
         <BootstrapNavbar.Toggle aria-controls="responsive-navbar-nav" />

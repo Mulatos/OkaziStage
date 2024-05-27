@@ -5,8 +5,6 @@ import Navbar from "../components/Navbar";
 import axios from "axios";
 import { Form, Table } from "react-bootstrap";
 
-import "../style/Style.css";
-
 interface WeightData {
   category: string | null;
   transactionType: boolean | null;
